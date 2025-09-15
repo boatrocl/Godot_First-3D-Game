@@ -11,7 +11,7 @@
 size = Vector3(60, 2, 60)
 
 [sub_resource type="BoxMesh" id="BoxMesh_itxqv"]
-size = Vector3(100, 2, 100)
+size = Vector3(150, 2, 150)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1hux"]
 albedo_color = Color(0, 0.329412, 0.0627451, 1)
@@ -125,18 +125,18 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 701.0
-offset_bottom = 517.0
+offset_right = 1611.0
+offset_bottom = 1098.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="UserInterface/Retry"]
 layout_mode = 1
-offset_left = 298.0
-offset_top = 258.0
-offset_right = 448.0
-offset_bottom = 281.0
+offset_left = 278.0
+offset_top = 22.0
+offset_right = 428.0
+offset_bottom = 45.0
 text = "Press Enter to retry"
 
 [node name="ScoreLabel" type="Label" parent="UserInterface"]
@@ -150,10 +150,10 @@ script = ExtResource("5_4j5ol")
 
 [node name="Label" type="Label" parent="UserInterface"]
 layout_mode = 0
-offset_left = 585.0
-offset_top = -2.0
-offset_right = 713.0
-offset_bottom = 47.0
+offset_left = 3.0
+offset_top = 40.0
+offset_right = 131.0
+offset_bottom = 115.0
 text = "สรวิชญ์ ทะมานันท์
 673380295-9
 Sec.1"
