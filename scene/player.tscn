@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cw6sxxabw7ebu"]
+
+[ext_resource type="Script" uid="uid://dtflcd4vi7p4l" path="res://script/player.gd" id="1_hjaqi"]
+[ext_resource type="PackedScene" uid="uid://ci1pouiwvbqud" path="res://art/player.glb" id="1_xo3ru"]
+[ext_resource type="PackedScene" uid="uid://xfat0cukc56k" path="res://art/Short Sword.glb" id="3_fvtld"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hjaqi"]
+radius = 1.0281
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hjaqi"]
+height = 2.97989
+radius = 2.54443
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_hjaqi")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Character" parent="Pivot" instance=ExtResource("1_xo3ru")]
+visible = false
+
+[node name="Short Sword" parent="Pivot" instance=ExtResource("3_fvtld")]
+transform = Transform3D(-3, 4.52987e-07, 0, -4.52987e-07, -3, 0, 0, 0, 3, 12, 8, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_hjaqi")
+
+[node name="MobDetector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MobDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.885056, 0)
+shape = SubResource("CylinderShape3D_hjaqi")
+
+[connection signal="body_entered" from="MobDetector" to="." method="_on_mob_detector_body_entered"]

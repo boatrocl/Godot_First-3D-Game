@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c16xf3hgkwyeo"]
+
+[ext_resource type="AudioStream" uid="uid://cfe3rowqc7yv7" path="res://art/Liszt___Paganini_-_Etude_No.3__La_campanella__64kb.mp3" id="1_73jlq"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_73jlq")
+volume_db = 10.0
+autoplay = true

@@ -1,0 +1,162 @@
+[gd_scene load_steps=12 format=3 uid="uid://c5i4bbxa6lvt8"]
+
+[ext_resource type="PackedScene" uid="uid://cw6sxxabw7ebu" path="res://scene/player.tscn" id="1_itxqv"]
+[ext_resource type="Script" uid="uid://d3vkx74u1dy34" path="res://script/main.gd" id="1_v0l8b"]
+[ext_resource type="PackedScene" uid="uid://cxf8g0kj0sbg5" path="res://scene/mob.tscn" id="2_wp4xf"]
+[ext_resource type="PackedScene" uid="uid://ckicbye5jhpap" path="res://art/grass mix.glb" id="3_4j5ol"]
+[ext_resource type="FontFile" uid="uid://b63m24thwlsjc" path="res://fonts/Montserrat-Medium.ttf" id="4_0ha60"]
+[ext_resource type="Script" uid="uid://crobrspuk4tk7" path="res://script/score_label.gd" id="5_4j5ol"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_no8bm"]
+size = Vector3(60, 2, 60)
+
+[sub_resource type="BoxMesh" id="BoxMesh_itxqv"]
+size = Vector3(80, 2, 80)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1hux"]
+albedo_color = Color(0, 0.329412, 0.0627451, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_itxqv"]
+
+[sub_resource type="Curve3D" id="Curve3D_v0l8b"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -26.7234, 0.0219574, -27.3312, 0, 0, 0, 0, 0, 0, 26.5365, 0.0213852, -27.0763, 0, 0, 0, 0, 0, 0, 26.5858, -0.0225143, 28.0521, 0, 0, 0, 0, 0, 0, -26.9682, -0.0213623, 27.0801),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="Main" type="Node"]
+script = ExtResource("1_v0l8b")
+mob_scene = ExtResource("2_wp4xf")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_no8bm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_itxqv")
+surface_material_override/0 = SubResource("StandardMaterial3D_p1hux")
+
+[node name="grass mix" parent="Ground/MeshInstance3D" instance=ExtResource("3_4j5ol")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 18.2912, 1.02643, 0)
+
+[node name="grass mix2" parent="Ground/MeshInstance3D" instance=ExtResource("3_4j5ol")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 24.2912, 1.02643, -22)
+
+[node name="grass mix3" parent="Ground/MeshInstance3D" instance=ExtResource("3_4j5ol")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -18.7088, 1.02643, -22)
+
+[node name="grass mix4" parent="Ground/MeshInstance3D" instance=ExtResource("3_4j5ol")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -18.7088, 1.02643, 22)
+
+[node name="grass mix5" parent="Ground/MeshInstance3D" instance=ExtResource("3_4j5ol")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -9.70877, 1.02643, 7)
+
+[node name="grass mix6" parent="Ground/MeshInstance3D" instance=ExtResource("3_4j5ol")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 20.2912, 1.02643, 21)
+
+[node name="grass mix7" parent="Ground/MeshInstance3D" instance=ExtResource("3_4j5ol")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 20.2912, 1.02643, 21)
+
+[node name="grass mix8" parent="Ground/MeshInstance3D" instance=ExtResource("3_4j5ol")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -2.70877, 1.02643, 26)
+
+[node name="grass mix9" parent="Ground/MeshInstance3D" instance=ExtResource("3_4j5ol")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -2.70877, 1.02643, -21)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.427358, 0.904082, 0, -0.904082, 0.427358, 0, 26.1496, 0)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_itxqv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.972628, 0.319275, -2.1208)
+collision_mask = 6
+
+[node name="CameraPivot" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 44, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, 0, -15.1275, 0)
+
+[node name="Cylinders" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 2.01087, -27)
+mesh = SubResource("CylinderMesh_itxqv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Cylinders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 2.01087, 26)
+mesh = SubResource("CylinderMesh_itxqv")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Cylinders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 2.01087, -27)
+mesh = SubResource("CylinderMesh_itxqv")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Cylinders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 2.01087, 27)
+mesh = SubResource("CylinderMesh_itxqv")
+
+[node name="SpawnPath" type="Path3D" parent="."]
+curve = SubResource("Curve3D_v0l8b")
+
+[node name="SpawnLocation" type="PathFollow3D" parent="SpawnPath"]
+transform = Transform3D(-0.00478604, 1.07433e-05, -0.999988, 0, 1, 1.07434e-05, 0.999988, 5.14184e-08, -0.00478604, -26.7234, 0.0219574, -27.3312)
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Retry" type="ColorRect" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 701.0
+offset_bottom = 517.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="UserInterface/Retry"]
+layout_mode = 1
+offset_left = 298.0
+offset_top = 258.0
+offset_right = 448.0
+offset_bottom = 281.0
+text = "Press Enter to retry"
+
+[node name="ScoreLabel" type="Label" parent="UserInterface"]
+layout_mode = 1
+offset_right = 69.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_0ha60")
+text = "Score : 0"
+script = ExtResource("5_4j5ol")
+
+[node name="Label" type="Label" parent="UserInterface"]
+layout_mode = 0
+offset_left = 585.0
+offset_top = -2.0
+offset_right = 713.0
+offset_bottom = 47.0
+text = "สรวิชญ์ ทะมานันท์
+673380295-9
+Sec.1"
+
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]

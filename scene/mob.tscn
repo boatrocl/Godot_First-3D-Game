@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxf8g0kj0sbg5"]
+
+[ext_resource type="Script" uid="uid://c0mo5axwmkllj" path="res://script/mob.gd" id="1_rtm52"]
+[ext_resource type="PackedScene" uid="uid://dfpe7y4ygy45s" path="res://art/mob.glb" id="2_0a0b6"]
+[ext_resource type="PackedScene" uid="uid://bwa4glk1s7y5o" path="res://art/LowPoly_Dragon_4 (2).fbx" id="3_0a0b6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wts8j"]
+size = Vector3(10, 1, 9)
+
+[node name="Mob" type="CharacterBody3D" groups=["mob"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_rtm52")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="mob" parent="Node3D" instance=ExtResource("2_0a0b6")]
+visible = false
+
+[node name="LowPoly_Dragon_4 (2)" parent="Node3D" instance=ExtResource("3_0a0b6")]
+transform = Transform3D(-0.7, 0, -6.11959e-08, 0, 0.7, 0, 6.11959e-08, 0, -0.7, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+shape = SubResource("BoxShape3D_wts8j")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+aabb = AABB(-5, -1, -5, 10, 2, 10)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
